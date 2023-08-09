@@ -23,7 +23,7 @@ class BaseScreen extends StatelessWidget {
               title: const Text('Home'),
             ),
           ),
-          const LoginScreen(),
+          LoginScreen(),
           Container(color: Colors.yellow),
           Container(color: Colors.green),
         ],

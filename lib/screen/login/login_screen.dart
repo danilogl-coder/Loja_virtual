@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../helpers/validators.dart';
+
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController pass = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -13,57 +19,63 @@ class LoginScreen extends StatelessWidget {
       body: Center(
           child: Card(
         margin: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: ListView(
-          padding: const EdgeInsets.all(16.0),
-          shrinkWrap: true,
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: "E-mail",
+        child: Form(
+          key: formkey,
+          child: ListView(
+            padding: const EdgeInsets.all(16.0),
+            shrinkWrap: true,
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: "E-mail",
+                ),
+                keyboardType: TextInputType.emailAddress,
+                autocorrect: false,
+                validator: (email) {
+                  if (!emailValid(email.toString())) return 'E-mail invalido';
+                  return null;
+                },
               ),
-              keyboardType: TextInputType.emailAddress,
-              autocorrect: false,
-              validator: (email) {
-                return null;
-              },
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: "Senha",
+              const SizedBox(
+                height: 16,
               ),
-              autocorrect: false,
-              obscureText: true,
-              validator: (pass) {
-                if (pass!.isEmpty || pass.length < 6) return 'Senha invalida';
-                return null;
-              },
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                  style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                  onPressed: () {},
-                  child: const Text('Esqueci minha senha')),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            SizedBox(
-              height: 44,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor,
-                      textStyle: const TextStyle(color: Colors.white)),
-                  onPressed: () {},
-                  child: const Text(
-                    "Entrar",
-                    style: TextStyle(fontSize: 18.0),
-                  )),
-            )
-          ],
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: "Senha",
+                ),
+                autocorrect: false,
+                obscureText: true,
+                validator: (pass) {
+                  if (pass!.isEmpty || pass.length < 6) return 'Senha invalida';
+                  return null;
+                },
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                    style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                    onPressed: () {},
+                    child: const Text('Esqueci minha senha')),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              SizedBox(
+                height: 44,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                        textStyle: const TextStyle(color: Colors.white)),
+                    onPressed: () {
+                      if (formkey.currentState!.validate()) {}
+                    },
+                    child: const Text(
+                      "Entrar",
+                      style: TextStyle(fontSize: 18.0),
+                    )),
+              )
+            ],
+          ),
         ),
       )),
     );
