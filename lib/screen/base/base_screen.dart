@@ -18,7 +18,7 @@ class BaseScreen extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         children: [
           Scaffold(
-            drawer: CustomDrawer(),
+            drawer: const CustomDrawer(),
             appBar: AppBar(
               title: const Text('Home'),
             ),

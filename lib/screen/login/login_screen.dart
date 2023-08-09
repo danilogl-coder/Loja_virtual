@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../../helpers/validators.dart';
+import '../../models/user_manager.dart';
+import '../../models/user_model.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController pass = TextEditingController();
+  final TextEditingController passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +29,7 @@ class LoginScreen extends StatelessWidget {
             shrinkWrap: true,
             children: [
               TextFormField(
+                controller: emailController,
                 decoration: const InputDecoration(
                   hintText: "E-mail",
                 ),
@@ -40,6 +44,7 @@ class LoginScreen extends StatelessWidget {
                 height: 16,
               ),
               TextFormField(
+                controller: passController,
                 decoration: const InputDecoration(
                   hintText: "Senha",
                 ),
@@ -67,7 +72,11 @@ class LoginScreen extends StatelessWidget {
                         backgroundColor: Theme.of(context).primaryColor,
                         textStyle: const TextStyle(color: Colors.white)),
                     onPressed: () {
-                      if (formkey.currentState!.validate()) {}
+                      if (formkey.currentState!.validate()) {
+                        context.read<UserManager>().signIn(UserModel(
+                            email: emailController.text,
+                            password: passController.text));
+                      }
                     },
                     child: const Text(
                       "Entrar",
