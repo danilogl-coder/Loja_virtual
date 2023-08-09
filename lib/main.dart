@@ -14,7 +14,12 @@ class MyApp extends StatelessWidget {
       title: 'Loja virtual',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.blue,
+        primaryColor: const Color.fromARGB(255, 4, 125, 141),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 4, 125, 141),
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          backgroundColor: const Color.fromARGB(255, 4, 125, 141),
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: BaseScreen(),

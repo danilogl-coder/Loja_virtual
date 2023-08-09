@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../commom_components/custom_drawer/custom_drawer.dart';
 import '../../models/page_manager.dart';
+import '../login/login_screen.dart';
 
 class BaseScreen extends StatelessWidget {
   BaseScreen({super.key});
@@ -22,7 +23,7 @@ class BaseScreen extends StatelessWidget {
               title: const Text('Home'),
             ),
           ),
-          Container(color: Colors.red),
+          const LoginScreen(),
           Container(color: Colors.yellow),
           Container(color: Colors.green),
         ],
