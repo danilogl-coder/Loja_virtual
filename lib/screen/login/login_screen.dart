@@ -39,9 +39,11 @@ class LoginScreen extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                     autocorrect: false,
                     validator: (email) {
-                      if (!emailValid(email.toString()))
+                      if (!emailValid(email.toString())) {
                         return 'E-mail invalido';
-                      return null;
+                      } else {
+                        return null;
+                      }
                     },
                   ),
                   const SizedBox(
@@ -56,9 +58,11 @@ class LoginScreen extends StatelessWidget {
                     autocorrect: false,
                     obscureText: true,
                     validator: (pass) {
-                      if (pass!.isEmpty || pass.length < 6)
+                      if (pass!.isEmpty || pass.length < 6) {
                         return 'Senha invalida';
-                      return null;
+                      } else {
+                        return null;
+                      }
                     },
                   ),
                   Align(
