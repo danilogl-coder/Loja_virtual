@@ -95,8 +95,6 @@ class LoginScreen extends StatelessWidget {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(
                                           content: Text('Falha ao Entrar $e'),
-                                          duration:
-                                              const Duration(milliseconds: 300),
                                           backgroundColor: Colors.red,
                                         ));
                                       },

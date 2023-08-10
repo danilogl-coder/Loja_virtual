@@ -28,8 +28,9 @@ class UserManager extends ChangeNotifier {
 
       currentUser = result.user;
       onSuccess();
-    } on PlatformException catch (e) {
-      onFail(getErrorString(e.code));
+    } on FirebaseAuthException catch (e) {
+        onFail(getErrorString('${e.code}'));
+      
     }
     loading = false;
   }
