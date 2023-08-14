@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:loja_virtual/models/user_model.dart';
 
 import '../helpers/firebase_errors.dart';
@@ -24,13 +23,12 @@ class UserManager extends ChangeNotifier {
     loading = true;
     try {
       final UserCredential result = await auth.signInWithEmailAndPassword(
-          email: user.email, password: user.password);
+          email: user.email!, password: user.password!);
 
       currentUser = result.user;
       onSuccess();
     } on FirebaseAuthException catch (e) {
-        onFail(getErrorString('${e.code}'));
-      
+      onFail(getErrorString('${e.code}'));
     }
     loading = false;
   }
