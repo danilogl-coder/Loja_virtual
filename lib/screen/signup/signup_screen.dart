@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
+import "package:provider/provider.dart";
 
 import "../../helpers/validators.dart";
+import "../../models/user_manager.dart";
 import "../../models/user_model.dart";
 
 class SignUpScreen extends StatelessWidget {
@@ -98,8 +100,7 @@ class SignUpScreen extends StatelessWidget {
                             ));
                             return;
                           }
-
-                          //UserManager
+                          context.read<UserManager>().signUp()
                         }
                       },
                       child: const Text('Criar Conta',
