@@ -10,7 +10,7 @@ class SignUpScreen extends StatelessWidget {
 
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-  final UserModel userModel = UserModel();
+  final UserModel user = UserModel();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class SignUpScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  onSaved: (name) => userModel.name = name,
+                  onSaved: (name) => user.name = name,
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(
@@ -52,7 +52,7 @@ class SignUpScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  onSaved: (email) => userModel.email = email,
+                  onSaved: (email) => user.email = email,
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(
@@ -65,7 +65,7 @@ class SignUpScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  onSaved: (pass) => userModel.password = pass,
+                  onSaved: (pass) => user.password = pass,
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(
@@ -78,7 +78,7 @@ class SignUpScreen extends StatelessWidget {
                     }
                     return null;
                   },
-                  onSaved: (pass) => userModel.confirmPassword = pass,
+                  onSaved: (pass) => user.confirmPassword = pass,
                 ),
                 const SizedBox(height: 16.0),
                 SizedBox(
@@ -92,7 +92,7 @@ class SignUpScreen extends StatelessWidget {
                       onPressed: () {
                         if (formkey.currentState!.validate()) {
                           formkey.currentState!.save();
-                          if (userModel.password != userModel.confirmPassword) {
+                          if (user.password != user.confirmPassword) {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
                               content: Text('Senhas não coincidem!'),
@@ -100,7 +100,19 @@ class SignUpScreen extends StatelessWidget {
                             ));
                             return;
                           }
-                          context.read<UserManager>().signUp()
+                          context.read<UserManager>().signUp(
+                              userModel: user,
+                              onSuccess: () {
+                                debugPrint('sucesso');
+                                //TODO: FECHAR TELA LOGIN
+                              },
+                              onFail: (e) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text('Falha ao Cadastrar $e'),
+                                  backgroundColor: Colors.red,
+                                ));
+                              });
                         }
                       },
                       child: const Text('Criar Conta',
