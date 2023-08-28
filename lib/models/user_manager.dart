@@ -39,7 +39,9 @@ class UserManager extends ChangeNotifier {
     try {
       final UserCredential result = await auth.createUserWithEmailAndPassword(
           email: userModel!.email!, password: userModel.password!);
-      currentUser = result.user;
+      userModel.id = result.user!.uid;
+      await userModel.saveData();
+
       onSuccess!();
     } on FirebaseAuthException catch (e) {
       onFail!(getErrorString(e.code));
