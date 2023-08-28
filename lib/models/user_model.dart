@@ -9,6 +9,12 @@ class UserModel {
     this.confirmPassword,
   });
 
+  UserModel.fromDocument(DocumentSnapshot document) {
+    id = document.id;
+    name = document.get('name') as String;
+    email = document.get('email') as String;
+  }
+
   String? id;
   String? name;
   String? email;
