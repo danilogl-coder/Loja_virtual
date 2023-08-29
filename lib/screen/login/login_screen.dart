@@ -110,7 +110,7 @@ class LoginScreen extends StatelessWidget {
                                       },
                                       onSuccess: () {
                                         debugPrint('sucessos');
-                                        //TODO: FECHAR TELA DE LOGIN
+                                        Navigator.of(context).pop();
                                       });
                                 }
                               },

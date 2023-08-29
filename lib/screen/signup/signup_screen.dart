@@ -104,7 +104,7 @@ class SignUpScreen extends StatelessWidget {
                               userModel: user,
                               onSuccess: () {
                                 debugPrint('sucesso');
-                                //TODO: FECHAR TELA LOGIN
+                                Navigator.of(context).pop();
                               },
                               onFail: (e) {
                                 ScaffoldMessenger.of(context)

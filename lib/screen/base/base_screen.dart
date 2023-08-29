@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../commom_components/custom_drawer/custom_drawer.dart';
 import '../../models/page_manager.dart';
-import '../login/login_screen.dart';
 
 class BaseScreen extends StatelessWidget {
   BaseScreen({super.key});
@@ -17,7 +16,6 @@ class BaseScreen extends StatelessWidget {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          LoginScreen(),
           Scaffold(
             drawer: const CustomDrawer(),
             appBar: AppBar(
