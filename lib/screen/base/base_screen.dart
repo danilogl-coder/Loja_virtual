@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja_virtual/screen/products/products_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../commom_components/custom_drawer/custom_drawer.dart';
@@ -22,12 +23,7 @@ class BaseScreen extends StatelessWidget {
               title: const Text('Home1'),
             ),
           ),
-          Scaffold(
-            drawer: const CustomDrawer(),
-            appBar: AppBar(
-              title: const Text('Home2'),
-            ),
-          ),
+          const ProductsScreen(),
           Scaffold(
             drawer: const CustomDrawer(),
             appBar: AppBar(
