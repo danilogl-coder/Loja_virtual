@@ -42,6 +42,7 @@ dependencies:
   cloud_firestore: ^4.8.4
   google_sign_in: ^6.1.4
   provider: ^6.0.5
+  flutter_carousel_widget: ^2.1.0
 
 dev_dependencies:
   flutter_test:
