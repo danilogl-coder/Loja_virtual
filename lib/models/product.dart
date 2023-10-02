@@ -6,9 +6,10 @@ class Product {
     id = document.id;
     name = document['name'] as String;
     description = document['description'] as String;
-    images = List<String>.from(document.get('images') as List<dynamic> ?? []);
-    sizes= (document.get('sizes') as List<dynamic>).map((s) => ItemSize.fromMap(s as Map<String, dynamic>)).toList();
-
+    images = List<String>.from(document.get('images') as List<dynamic>);
+    sizes = (document.get('sizes') as List<dynamic>)
+        .map((s) => ItemSize.fromMap(s as Map<String, dynamic>))
+        .toList();
 
     print(sizes);
   }
