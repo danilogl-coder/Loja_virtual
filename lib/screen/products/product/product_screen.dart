@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:loja_virtual/models/product.dart';
+import 'package:loja_virtual/screen/products/components/size_widget.dart';
+import 'package:provider/provider.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key, required this.product});
@@ -74,7 +76,24 @@ class ProductScreen extends StatelessWidget {
             style: const TextStyle(
               fontSize: 16.0,
             ),
-          )
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 16.0, bottom: 8.0),
+            child: Text('Tamanhos',
+                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w500)),
+          ),
+          ChangeNotifierProvider.value(
+            value: product,
+            child: Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: product.sizes!.map((s) {
+                return SizeWidget(
+                  size: s,
+                );
+              }).toList(),
+            ),
+          ),
         ],
       ),
     );
