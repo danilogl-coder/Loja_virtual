@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:loja_virtual/models/item_size.dart';
 import 'package:loja_virtual/models/product.dart';
 
@@ -7,6 +8,19 @@ class CartModel {
     quantity = 1;
     size = product!.selectedSize.name!;
   }
+
+  CartModel.fromDocument(DocumentSnapshot document) {
+    productId = document.get('pid') as String;
+    quantity = document.get('quantity') as int;
+    size = document.get('size') as String;
+
+    firestore
+        .doc('products/$productId')
+        .get()
+        .then((doc) => product = Product.fromDocument(doc));
+  }
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   String? productId;
   int? quantity;

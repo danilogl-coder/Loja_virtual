@@ -27,6 +27,8 @@ class UserModel {
     await firestoreRef.set(toMap());
   }
 
+  CollectionReference get cartReference => firestoreRef.collection('cart');
+
   Map<String, dynamic> toMap() {
     return {
       'name': name,
