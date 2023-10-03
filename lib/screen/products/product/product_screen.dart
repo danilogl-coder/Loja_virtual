@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:loja_virtual/models/cart_manager.dart';
 import 'package:loja_virtual/models/product.dart';
 import 'package:loja_virtual/models/user_manager.dart';
 import 'package:loja_virtual/screen/products/components/size_widget.dart';
@@ -109,7 +110,7 @@ class ProductScreen extends StatelessWidget {
                       onPressed: product.selectedSize != null
                           ? () {
                               if (userManager.isLogedIn) {
-                                //TODO: ADICIONAR AO CARRINHO
+                                context.read<CartManager>().addToCart(product);
                               } else {
                                 Navigator.of(context).pushNamed('/login');
                               }

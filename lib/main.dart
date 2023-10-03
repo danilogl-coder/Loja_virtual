@@ -1,5 +1,6 @@
 import "package:firebase_core/firebase_core.dart";
 import "package:flutter/material.dart";
+import "package:loja_virtual/models/cart_manager.dart";
 import "package:loja_virtual/models/product.dart";
 import "package:loja_virtual/models/product_manager.dart";
 import "package:loja_virtual/screen/base/base_screen.dart";
@@ -32,6 +33,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => ProductManager(),
+          lazy: false,
+        ),
+        Provider(
+          create: (_) => CartManager(),
           lazy: false,
         )
       ],
