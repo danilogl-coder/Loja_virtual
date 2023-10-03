@@ -108,7 +108,8 @@ class ProductScreen extends StatelessWidget {
                     height: 44,
                     child: ElevatedButton(
                       // ignore: unnecessary_null_comparison
-                      onPressed: product.selectedSize != null
+                      onPressed: product.selectedSize != null &&
+                              product.selectedSize.name != null
                           ? () {
                               if (userManager.isLogedIn) {
                                 context.read<CartManager>().addToCart(product);
@@ -117,7 +118,7 @@ class ProductScreen extends StatelessWidget {
                                 Navigator.of(context).pushNamed('/login');
                               }
                             }
-                          : null,
+                          : () {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: primaryColor),
                       child: Text(

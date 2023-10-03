@@ -43,4 +43,16 @@ class CartModel {
       return itemSize?.price ?? 0;
     }
   }
+
+  Map<String, dynamic> toCartItemMap() {
+    return {
+      'pid': productId,
+      'quantity': quantity,
+      'size': size,
+    };
+  }
+
+  bool stackable(Product product) {
+    return product.id == productId && product.selectedSize.name == size;
+  }
 }

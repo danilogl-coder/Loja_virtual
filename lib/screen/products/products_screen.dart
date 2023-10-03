@@ -69,14 +69,34 @@ class ProductsScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Consumer<ProductManager>(builder: (context, productManager, child) {
-        final filteredProducts = productManager.filteredProducts;
-        return ListView.builder(
-            padding: const EdgeInsets.all(4.0),
-            itemCount: filteredProducts.length,
-            itemBuilder: (context, index) =>
-                ProductListTile(product: filteredProducts[index]));
-      }),
+      body: Column(
+        children: [
+          Consumer<ProductManager>(builder: (context, productManager, child) {
+            final filteredProducts = productManager.filteredProducts;
+            return Expanded(
+              child: ListView.builder(
+                  padding: const EdgeInsets.all(4.0),
+                  itemCount: filteredProducts.length,
+                  itemBuilder: (context, index) =>
+                      ProductListTile(product: filteredProducts[index])),
+            );
+          }),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/cart');
+                },
+                backgroundColor: Colors.white,
+                foregroundColor: Theme.of(context).primaryColor,
+                child: Icon(Icons.shopping_cart),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
