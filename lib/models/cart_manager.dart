@@ -8,7 +8,6 @@ class CartManager {
   List<CartModel> items = [];
 
   UserModel? user = UserModel();
-
   void updateUser(UserManager userManager) {
     user = userManager.userModel;
     items.clear();
@@ -19,17 +18,24 @@ class CartManager {
 
   Future<void> _loadCartItems() async {
     final QuerySnapshot cartSnap = await user!.cartReference.get();
-    items = cartSnap.docs.map((d) => CartModel.fromDocument(d)).toList();
+    items = cartSnap.docs
+        .map((d) => CartModel.fromDocument(d)..addListener(_onItemUpdate))
+        .toList();
   }
 
   void addToCart(Product product) {
     try {
       final e = items.firstWhere((p) => p.stackable(product));
-      e.quantity = e.quantity! + 1;
+      e.quantity++;
     } catch (e) {
-      final cartProduct = CartModel.fromProduct(product);
-      items.add(cartProduct);
-      user!.cartReference.add(cartProduct.toCartItemMap());
+      final cartModel = CartModel.fromProduct(product);
+      cartModel.addListener(_onItemUpdate);
+      items.add(cartModel);
+      user!.cartReference.add(cartModel.toCartItemMap());
     }
+  }
+
+  void _onItemUpdate() {
+    print('atualizado');
   }
 }
