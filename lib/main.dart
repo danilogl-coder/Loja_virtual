@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           create: (_) => ProductManager(),
           lazy: false,
         ),
-        ProxyProvider<UserManager, CartManager>(
+        ChangeNotifierProxyProvider<UserManager, CartManager>(
           create: (_) => CartManager(),
           update: (context, userManager, cartManager) =>
               cartManager!..updateUser(userManager),
