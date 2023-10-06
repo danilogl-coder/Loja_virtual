@@ -39,12 +39,21 @@ class CartTile extends StatelessWidget {
                         style: const TextStyle(fontWeight: FontWeight.w300),
                       ),
                     ),
-                    Text(
-                      'R\$ ${cartModel.unitPrice.toStringAsFixed(2)}',
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold),
+                    Consumer<CartModel>(
+                      builder: (context, cartModel, child) {
+                        if (cartModel.hasStock) {
+                          return Text(
+                            'R\$ ${cartModel.unitPrice.toStringAsFixed(2)}',
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold),
+                          );
+                        } else 
+                        {
+                          return const Text('Sem estoque suficiente', style: TextStyle(color: Colors.red, fontSize: 12),);
+                        }
+                      },
                     )
                   ]),
             )),
