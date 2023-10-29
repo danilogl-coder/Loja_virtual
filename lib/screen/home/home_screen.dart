@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loja_virtual/commom_components/custom_drawer/custom_drawer.dart';
+import 'package:loja_virtual/models/home_manager.dart';
+import 'package:loja_virtual/screen/home/components/section_list.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,12 +40,23 @@ class HomeScreen extends StatelessWidget {
                   centerTitle: true,
                 ),
               ),
-              SliverToBoxAdapter(
-                child: Container(
-                  height: 2000,
-                  width: 200,
-                ),
-              ),
+              Consumer<HomeManager>(builder: (context, homeManager, child) {
+                final List<Widget> children =
+                    homeManager.sections.map<Widget>((section) {
+                  switch (section.type) {
+                    case 'List':
+                      return SectionList(
+                        section: section,
+                      );
+                    case 'Staggered':
+                      return Container();
+
+                    default:
+                      return Container();
+                  }
+                }).toList();
+                return SliverList(delegate: SliverChildListDelegate(children));
+              })
             ],
           ),
         ],
