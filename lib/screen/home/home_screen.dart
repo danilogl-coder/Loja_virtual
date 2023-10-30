@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loja_virtual/commom_components/custom_drawer/custom_drawer.dart';
 import 'package:loja_virtual/models/home_manager.dart';
 import 'package:loja_virtual/screen/home/components/section_list.dart';
+import 'package:loja_virtual/screen/home/components/section_staggered.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -49,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                         section: section,
                       );
                     case 'Staggered':
-                      return Container();
+                      return SectionStaggered(section:section);
 
                     default:
                       return Container();
