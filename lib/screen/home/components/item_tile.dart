@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loja_virtual/models/product_manager.dart';
 import 'package:loja_virtual/models/section_item.dart';
 import 'package:provider/provider.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ItemTile extends StatelessWidget {
   const ItemTile({super.key, required this.item});
@@ -23,10 +24,7 @@ class ItemTile extends StatelessWidget {
       },
       child: AspectRatio(
                         aspectRatio: 1,
-                        child: Image.network(
-                          item.image ?? '',
-                          fit: BoxFit.cover,
-                        )),
+                        child: FadeInImage.memoryNetwork(placeholder: kTransparentImage, image: item.image!, fit: BoxFit.cover,)),
     );
   }
 }
