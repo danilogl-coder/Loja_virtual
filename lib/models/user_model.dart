@@ -21,6 +21,8 @@ class UserModel {
   String? password;
   String? confirmPassword;
 
+  bool admin = false;
+
   DocumentReference get firestoreRef =>
       FirebaseFirestore.instance.doc('users/$id');
   Future<void> saveData() async {
